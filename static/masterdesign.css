@@ -1,0 +1,66 @@
+body{
+    margin: auto;
+    font: 600 18px 'Source Sans Pro', sans-serif;
+    letter-spacing: 0.65px;
+    background-image: linear-gradient(to right, rgb(74, 91, 68), lightblue);
+}
+
+h2{
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    text-transform: capitalize;
+    text-decoration: underline;
+    width: 350px;
+    box-shadow: 0 5px 7px -1px rgba(0,0,0,0.5);
+    background-color: rgb(255, 255, 255);
+    border-radius: 16px;
+    background-image: linear-gradient(to right, rgb(74, 91, 68), lightblue);
+    color: rgb(74, 91, 68); /* Matching color for text */
+}
+
+form{
+    margin: auto;
+    padding: 50px;
+    text-align: center;
+    color: rgb(74, 91, 68); /* Matching color for text */
+}
+
+.menu {
+    background-color: #4a5b44;
+    padding: 10px 0;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.menu ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.menu ul li a:hover {
+    background-color: lightblue;
+    color: #4a5b44;
+} /* Added closing brace */
+
+#para1{
+    margin: auto;
+    padding: 50px;
+    text-align: center;
+    color: rgb(74, 91, 68);
+}
