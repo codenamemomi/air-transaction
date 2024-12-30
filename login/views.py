@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from .forms import UserForm
@@ -9,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 import hmac
 import hashlib
 import random
+import logging
 # Create your views here.
 
 def register(request):
@@ -34,6 +34,7 @@ def login_page(request):
             login(request, user)
             return redirect('home')
         else:
+            logging.warning('Invalid login attempt')
             return render(request, 'login.html', {'error': 'invalid email or password'})
     return render(request, 'login.html')
 
@@ -41,7 +42,7 @@ def login_page(request):
 def get_account_summary(request):
     user = request.user
     if not hasattr(user, 'account_number'):
-        user.account_number =str(random.randint(1000000000, 9999999999))
+        user.account_number = str(random.randint(1000000000, 9999999999))
         user.save()
     account_details = CustomUser.objects.get(username=user.username)
 
@@ -50,12 +51,9 @@ def get_account_summary(request):
     secret_key = '321'
     signature = hmac.new(secret_key.encode(),account_number.encode(), hashlib.sha256).hexdigest()   
 
-
     context = {
         'account_details': account_details,
         'account_number': account_number,
         'signature': signature,
     }
     return render(request, 'home.html', context)
-
-    

@@ -1,8 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager,PermissionsMixin
-
+import logging
 # Create your models here.
 
+
+# Create a logger
+logger = logging.getLogger(__name__)
 
 class CustomerUserManager(BaseUserManager):
     def create_user(self,email,username,password = None, **extra_fields):
@@ -12,6 +15,7 @@ class CustomerUserManager(BaseUserManager):
         user = self.model(email = email,username = username, **extra_fields)
         user.set_password(password)
         user.save(using = self._db)
+        logger.info(f'User created: {email}')
         return user
     
     def create_superuser(self,email,username,password = None, **extra_fields):
@@ -41,4 +45,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
-
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        logger.info(f'User saved: {self.email}')

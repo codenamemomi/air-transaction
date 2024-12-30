@@ -15,4 +15,12 @@
     {% csrf_token %}
     <button type="submit">Logout</button>
 </form>
+
+{% if account_details %}
+    <p>Account Balance: {{ account_details.balance }}</p>
+    <p>Account Type: {{ account_details.account_type }}</p>
+{% else %}
+    <p>No account details available.</p>
+{% endif %}
+
 {% endblock %}
